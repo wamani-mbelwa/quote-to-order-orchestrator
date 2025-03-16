@@ -1,0 +1,1 @@
+import Redis from 'ioredis'; import { config } from '../config/index.js'; const client=new Redis({host:config.redis.host,port:config.redis.port}); export const cache={ async get(k:string){return client.get(k);}, async set(k:string,v:string,ttl:number){ await client.set(k,v,'EX',ttl); } };

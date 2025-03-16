@@ -1,0 +1,1 @@
+import { SQSClient, SendMessageCommand } from '@aws-sdk/client-sqs'; import { config } from '../config/index.js'; const client=new SQSClient({region:config.aws.region, endpoint:config.aws.endpoint}); export const queue={ async enqueue(payload:any){ await client.send(new SendMessageCommand({QueueUrl:config.sqs.queueUrl, MessageBody:JSON.stringify(payload)})); } };
